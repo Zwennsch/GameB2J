@@ -4,29 +4,27 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-
-public class Basic extends JFrame{
+public class ImageExample extends JFrame{
 	
-	public Basic() {
+	public ImageExample() {
 		initUI();
 	}
 
 	private void initUI() {
-		add(new Board());
+		add(new BoardImage());
 		
-		setSize(330	, 330);
-		setTitle("Donat");
+		pack();
+		
+		setTitle("Drawing Images");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
 
 	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(() -> {
-			Basic basic = new Basic();
-			basic.setVisible(true);
+		EventQueue.invokeLater(()-> {
+			ImageExample iEx = new ImageExample();
+			iEx.setVisible(true);
 		});
-		
 	}
 
 }

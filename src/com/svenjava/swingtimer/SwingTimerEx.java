@@ -17,7 +17,13 @@ public class SwingTimerEx extends JFrame {
 		/*
 		 * with Utility Timer:
 		 */
-		add(new UtilityTimerPanel());
+//		add(new UtilityTimerPanel());
+		
+		/*
+		 * Using Thread, which is often supposed to be the most accurate and efficient way of animation 
+		 */
+		
+		add(new ThreadPanel());
 		pack();
 		setTitle("Timer Example");
 		setLocationRelativeTo(null);

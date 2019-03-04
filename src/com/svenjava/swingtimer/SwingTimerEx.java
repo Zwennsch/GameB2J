@@ -11,13 +11,19 @@ public class SwingTimerEx extends JFrame {
 	}
 
 	private void initUI() {
-		add(new SwingPanel());
+//		with Swing Timer:
+//		add(new SwingPanel());
+		
+		/*
+		 * with Utility Timer:
+		 */
+		add(new UtilityTimerPanel());
 		pack();
 		setTitle("Timer Example");
 		setLocationRelativeTo(null);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setSize(300, 300);
+//		setSize(500, 300);
 	}
 
 	public static void main(String[] args) {

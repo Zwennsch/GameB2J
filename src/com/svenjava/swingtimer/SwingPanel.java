@@ -18,14 +18,14 @@ public class SwingPanel extends JPanel implements ActionListener {
 	private final int P_HEIGHT = 350;
 	private final int INITIAL_X = 0;
 	private final int INITIAL_Y = 0;
-	private final int DELAY = 25;
+	private final int DELAY = 5;
 	private final String IMAGE_SRC = "src/resources/star.png";
 	
 	private Image star;
 	private Timer timer;
 	private int x,y;
-	private int xSpeed;
-	private int ySpeed;
+	private double xSpeed;
+	private double ySpeed;
 	
 	public SwingPanel() {
 		initPanel();
@@ -60,6 +60,7 @@ public class SwingPanel extends JPanel implements ActionListener {
 
 	private void drawStar(Graphics g) {
 		g.drawImage(star, x, y,  this);
+//		without this, the animation is not smooth in Linux
 		Toolkit.getDefaultToolkit().sync();
 	}
 

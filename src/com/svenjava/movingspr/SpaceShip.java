@@ -2,39 +2,41 @@ package com.svenjava.movingspr;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
-public class SpaceShip {
+public class SpaceShip extends Sprite{
 	
-	private int x,y,dx, dy, w, h;
-	private Image image;
+	private int dx, dy;
 	private final String SRC = "src/resources/spaceship.png";
+	private List<Missile> missiles;
 	
 	public SpaceShip(int startx, int starty) {
-		this.x = startx;
-		this.y = starty;
+		super(startx,starty);
 		this.dx = 0;
 		this.dy = 0;
-		
+		missiles = new ArrayList<>();
 		try {
 			loadImage(SRC);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+		getImageDimension();
+	}
+	
+	public List<Missile> getMissiles(){
+		return missiles;
 	}
 
-	private void loadImage(String src) {
-		ImageIcon ii = new ImageIcon(src);
-		image = ii.getImage();
-		
-		w = image.getWidth(null);
-		h = image.getHeight(null);
-	}
 
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		System.out.println(key);
+		
+		if (key == KeyEvent.VK_SPACE) {
+			fire();
+		}
 		if (key == KeyEvent.VK_LEFT) {
 			dx = 0;
 		}
@@ -47,6 +49,10 @@ public class SpaceShip {
 		if (key == KeyEvent.VK_DOWN) {
 			dy = 0;
 		}
+	}
+
+	private void fire() {
+		missiles.add(new Missile(this.x + this.width, this.y + this.height/2));
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -70,26 +76,11 @@ public class SpaceShip {
 	public void move() {
 		x+=dx;
 		y+=dy;
-//		System.out.println("x : "+ x);
 	}
 
-	public int getX() {
-		return this.x;
-	}
-	public int getY() {
-		return this.y;
-	}
-	public int getWidth() {
-		return this.w;
-	}
-	public int getHeight() {
-		return this.h;
-	}
+	
 
-	public Image getImage() {
-		
-		return this.image;
-	}
+	
 	
 	
 

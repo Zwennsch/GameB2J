@@ -1,10 +1,13 @@
 package com.svenjava.movingspr;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
 public class MovingSpriteEx extends JFrame {
+	
+	public static Dimension dim = new Dimension(400, 300);
 	
 	public MovingSpriteEx() {
 		initUI();
@@ -14,7 +17,7 @@ public class MovingSpriteEx extends JFrame {
 		add(new SpritePanel());
 		
 		setTitle("SpaceShip");
-		setSize(400,300);
+		setSize(dim);
 		
 		setLocationRelativeTo(null);
 		setResizable(false);

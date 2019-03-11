@@ -52,7 +52,7 @@ public class SpaceShip extends Sprite{
 	}
 
 	private void fire() {
-		missiles.add(new Missile(this.x + this.width, this.y + this.height/2));
+		missiles.add(new Missile(this.x + this.width-20, this.y + this.height/2-3));
 	}
 
 	public void keyPressed(KeyEvent e) {

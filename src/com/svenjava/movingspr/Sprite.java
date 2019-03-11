@@ -1,6 +1,7 @@
 package com.svenjava.movingspr;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -41,6 +42,9 @@ public class Sprite {
 	}
 	public void setVisible(boolean vis) {
 		this.visible = vis;
+	}
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
 	}
 
 }

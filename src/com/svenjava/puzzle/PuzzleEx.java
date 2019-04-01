@@ -11,8 +11,10 @@ import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -27,6 +29,7 @@ public class PuzzleEx extends JFrame{
 	
 	private BufferedImage resizedImage;
 	private Image image;
+	private MyButton lastButton;
 	
 	List<Point> solution;
 	List<MyButton> buttons;
@@ -72,10 +75,38 @@ public class PuzzleEx extends JFrame{
 		
 		for (int i = 0; i < NUMBER_OF_ROWS; i++) {
 			for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
-				image = createImage(new FilteredImageSource(resizedImage.getSource(), imgf))
+				image = createImage(new FilteredImageSource(resizedImage.getSource(), new CropImageFilter(
+						j * width/NUMBER_OF_COLUMNS, i* height/NUMBER_OF_ROWS, width/NUMBER_OF_COLUMNS, height/NUMBER_OF_ROWS)));
 				
+				MyButton button = new MyButton(image);
+				button.putClientProperty("position", new Point(i,j));
+				
+				if(i == NUMBER_OF_ROWS-1 && j == NUMBER_OF_COLUMNS-1) {
+					lastButton = new MyButton();
+					lastButton.setBorderPainted(false);
+					lastButton.setContentAreaFilled(false);
+					lastButton.setLastButton();
+					lastButton.putClientProperty("position", new Point(i,j));
+				}else {
+					buttons.add(button);
+				}
 			}
 		}
+		
+		Collections.shuffle(buttons);
+		buttons.add(lastButton);
+		
+		for(int i = 0; i < NUMBER_OF_BUTTONS; i++) {
+			MyButton btn = buttons.get(i);
+			panel.add(btn);
+			btn.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+			
+		}
+		pack();
+		setTitle("Puzzle");
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) {

@@ -2,13 +2,9 @@ package com.svenjava.puzzle;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.awt.image.CropImageFilter;
@@ -23,6 +19,10 @@ import javax.swing.JPanel;
 
 public class PuzzleEx extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private static final String  SOURCE = "src/resources/claudio-pizarro.jpg";
 	private int width, height;
@@ -65,6 +65,7 @@ public class PuzzleEx extends JFrame{
 		panel = new JPanel();
 		panel.setBorder(BorderFactory.createLineBorder(Color.gray));
 		panel.setLayout(new GridLayout(4, 3, 0, 0));
+		panel.setBackground(Color.black);
 		
 		ImageLoader iLoader = new ImageLoader(SOURCE, DESIRED_WIDTH);
 		resizedImage = iLoader.getResizedImage();
@@ -100,7 +101,7 @@ public class PuzzleEx extends JFrame{
 			MyButton btn = buttons.get(i);
 			panel.add(btn);
 			btn.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-			
+			btn.addActionListener(new ClickAction(buttons));
 		}
 		pack();
 		setTitle("Puzzle");

@@ -34,16 +34,14 @@ public class MyButton extends JButton{
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
 				super.mouseEntered(e);
-				BorderFactory.createLineBorder(Color.YELLOW);
+				setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				
-				super.mouseEntered(e);
-				BorderFactory.createLineBorder(Color.GRAY);
+				super.mouseExited(e);
+				setBorder(BorderFactory.createLineBorder(Color.GRAY));
 			}
 		});
 	}

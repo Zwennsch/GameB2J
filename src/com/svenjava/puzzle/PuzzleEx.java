@@ -101,7 +101,7 @@ public class PuzzleEx extends JFrame{
 			MyButton btn = buttons.get(i);
 			panel.add(btn);
 			btn.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-			btn.addActionListener(new ClickAction(buttons, panel));
+			btn.addActionListener(new ClickAction(buttons, panel, solution));
 		}
 		pack();
 		setTitle("Puzzle");

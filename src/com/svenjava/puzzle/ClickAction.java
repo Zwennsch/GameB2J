@@ -1,27 +1,46 @@
 package com.svenjava.puzzle;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ClickAction extends AbstractAction {
 	
 	List<MyButton> btns;
+	List<Point> solution;
 	JPanel panel;
 	
-	public ClickAction(List<MyButton> btns, JPanel panel) {
+	
+	public ClickAction(List<MyButton> btns, JPanel panel, List<Point> solution) {
 		this.btns = btns;
 		this.panel = panel;
+		this.solution = solution;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		checkButton(e);
-		System.out.println("clicked");
+		checkSolution();
+	}
+
+	private void checkSolution() {
+		List<Point> current = new ArrayList<>();
+		
+		for (JComponent btn : btns) {
+			current.add((Point) btn.getClientProperty("position"));
+		}
+		if (Arrays.deepEquals(current.toArray(), solution.toArray())) {
+			JOptionPane.showMessageDialog(panel, "Finished", "Congratulation", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 	private void checkButton(ActionEvent e) {

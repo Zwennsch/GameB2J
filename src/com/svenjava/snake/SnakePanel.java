@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class SnakePanel extends JPanel implements ActionListener{
+public class SnakePanel extends JPanel {
 	
 	private GameLogic game;
 	private Snake snake;
@@ -16,15 +16,19 @@ public class SnakePanel extends JPanel implements ActionListener{
 	private final int HEIGHT = 600;
 	
 	public SnakePanel() {
-		setBackground(Color.BLACK);
 		snake = new Snake();
 		game = new GameLogic(WIDTH, HEIGHT, snake);
 		initBoard();
 		
 	}
 	private void initBoard() {
+		setBackground(Color.BLACK);
 		addKeyListener(game);
 		setFocusable(true);
+		initGame();
+	}
+	private void initGame() {
+		
 	}
 	@Override
 	public Dimension getPreferredSize() {
@@ -39,10 +43,7 @@ public class SnakePanel extends JPanel implements ActionListener{
 		g.setColor(Color.green);
 		g.fillOval(10, 20, 10, 10);
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("jjj");
-	}
+	
 	
 
 }

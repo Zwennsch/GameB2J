@@ -12,12 +12,12 @@ public class SnakePanel extends JPanel {
 	
 	private GameLogic game;
 	private Snake snake;
-	private final int WIDTH = 600;
-	private final int HEIGHT = 600;
+	protected static final int WIDTH = 600;
+	protected static final int HEIGHT = 600;
 	
 	public SnakePanel() {
 		snake = new Snake();
-		game = new GameLogic(WIDTH, HEIGHT, snake);
+		game = new GameLogic(WIDTH, HEIGHT, snake, this);
 		initBoard();
 		
 	}
@@ -25,11 +25,9 @@ public class SnakePanel extends JPanel {
 		setBackground(Color.BLACK);
 		addKeyListener(game);
 		setFocusable(true);
-		initGame();
+		game.initGame();
 	}
-	private void initGame() {
-		
-	}
+	
 	@Override
 	public Dimension getPreferredSize() {
 		// TODO Auto-generated method stub

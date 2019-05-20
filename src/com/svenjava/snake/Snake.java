@@ -1,6 +1,7 @@
 package com.svenjava.snake;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Snake {
@@ -11,9 +12,16 @@ public class Snake {
 	private int direction;
 	private Point positionHead;
 	private int speed;
+	private final int SCREEN_WIDTH = SnakePanel.WIDTH;
+	private final int SCREEN_HEIGHT = SnakePanel.HEIGHT;
 	
 	public Snake() {
-		
+		length = 3;
+		bodyParts = new ArrayList<>();
+		for (int i = 0; i <3; i++) {
+			bodyParts.add(new Point(SCREEN_WIDTH/2 - i * PART_RADIOUS, SCREEN_HEIGHT/2));
+		}
+		positionHead = bodyParts.get(0);
 	}
 
 }

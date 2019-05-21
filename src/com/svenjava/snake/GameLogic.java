@@ -7,7 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-public class GameLogic extends KeyAdapter implements ActionListener{
+public class GameLogic extends KeyAdapter{
 	
 	private boolean isRunning;
 	private int panelWidth, panelHeight;
@@ -22,12 +22,26 @@ public class GameLogic extends KeyAdapter implements ActionListener{
 		this.snake = snake;
 		this.panelWidth = width;
 		this.panelHeight = height;
-		createRandomStartPositions();
+		createRandomFruitPosition();
+		runGameLoop();
 	}
 
-	private void createRandomStartPositions() {
+	private void runGameLoop() {
+		Thread thread = new Thread() {
+			public void run() {
+				gameLoop();
+			}
+		};
+		thread.start();
+	}
+	private void gameLoop() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void createRandomFruitPosition() {
 		Random rand = new Random();
-//		fruitPosoition = new Point(rand.nextInt(arg0), y)
+		fruitPosoition = new Point(rand.nextInt(panelWidth), rand.nextInt(panelHeight));
 	}
 	
 	@Override
@@ -43,10 +57,5 @@ public class GameLogic extends KeyAdapter implements ActionListener{
 		snake = new Snake();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -25,7 +25,7 @@ public class GameLogic extends KeyAdapter{
 		createRandomFruitPosition();
 		runGameLoop();
 	}
-
+// 	game loop should be running in it's own thread
 	private void runGameLoop() {
 		Thread thread = new Thread() {
 			public void run() {
@@ -35,7 +35,28 @@ public class GameLogic extends KeyAdapter{
 		thread.start();
 	}
 	private void gameLoop() {
-		// TODO Auto-generated method stub
+		System.out.println("Starting the loop");
+		final double GAME_HERTZ = 30.0;
+//		Calculate how many ns each frame should take for our target game hertz
+		final double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
+//		At the very most we will update the game this many times before a new render
+//		if worried about visual hitches more than perfect timing, set this to 1.
+		final int MAX_UPDATES_PER_RENDER = 5;
+//		We need the last update time
+		double lastUpdateTime = System.nanoTime();
+//		Store the last time we rendered
+		double lastRenderTime = System.nanoTime();
+		
+//		If we are able to get as high as this FPS don't render again
+		final double TARGET_FPS = 60.0;
+		final double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
+		
+//		Simple way of finding FPS:
+		int lastSecondTime = (int) (lastUpdateTime / 1000000000);
+		
+		while(isRunning) {
+			
+		}
 		
 	}
 
@@ -53,8 +74,8 @@ public class GameLogic extends KeyAdapter{
 		
 		System.out.println(k);
 	}
-	public void initGame() {
-		snake = new Snake();
+	public void initGame(Snake snake) {
+		this.snake = snake;
 	}
 
 

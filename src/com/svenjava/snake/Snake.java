@@ -21,7 +21,15 @@ public class Snake {
 		for (int i = 0; i <3; i++) {
 			bodyParts.add(new Point(SCREEN_WIDTH/2 - i * PART_RADIOUS, SCREEN_HEIGHT/2));
 		}
-		positionHead = bodyParts.get(0);
+		setPositionHead(bodyParts.get(0));
+	}
+
+	public Point getPositionHead() {
+		return positionHead;
+	}
+
+	public void setPositionHead(Point positionHead) {
+		this.positionHead = positionHead;
 	}
 
 }

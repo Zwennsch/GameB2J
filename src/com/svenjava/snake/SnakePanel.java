@@ -25,7 +25,7 @@ public class SnakePanel extends JPanel {
 		setBackground(Color.BLACK);
 		addKeyListener(game);
 		setFocusable(true);
-		game.initGame();
+		game.initGame(snake);
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class SnakePanel extends JPanel {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.setColor(Color.green);
-		g.fillOval(10, 20, 10, 10);
+		g.fillOval(snake.getPositionHead().x, snake.getPositionHead().y, 10, 10);
 	}
 	
 	

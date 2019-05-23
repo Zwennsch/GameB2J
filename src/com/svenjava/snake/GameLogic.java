@@ -55,11 +55,50 @@ public class GameLogic extends KeyAdapter{
 		int lastSecondTime = (int) (lastUpdateTime / 1000000000);
 		
 		while(isRunning) {
+			double now = System.nanoTime();
+			int updateCount = 0;
+//			Do as many updates as we need to potentially playing catch-up
+			while(now - lastUpdateTime >= TIME_BETWEEN_UPDATES && updateCount <= MAX_UPDATES_PER_RENDER) {
+				updateGame();
+				lastUpdateTime += TIME_BETWEEN_UPDATES;
+				updateCount++;
+			}
+//			if for some reason an update takes forever we don't want to do an insane number of catch-ups
+//			if you were doing some sort of game that needed to keep EXACT_TIME! you would get rid of this
+			if(now - lastUpdateTime > TIME_BETWEEN_UPDATES) {
+				lastUpdateTime = now - TIME_BETWEEN_UPDATES;
+			}
 			
+//			Render. To do so, we need to calculate interpolation for a smooth render.
+			float interpolation = Math.min(1.0f, (float) ((now - lastUpdateTime) / TIME_BETWEEN_UPDATES));
+			renderGame(interpolation);
+			lastRenderTime = now;
 		}
 		
 	}
 
+	private void renderGame(float interpolation) {
+		// TODO Auto-generated method stub
+		
+	}
+	private void updateGame() {
+		checkFruit();
+		checkCollision();
+		move();
+		
+	}
+	private void move() {
+		// TODO Auto-generated method stub
+		
+	}
+	private void checkCollision() {
+		// TODO Auto-generated method stub
+		
+	}
+	private void checkFruit() {
+		// TODO Auto-generated method stub
+		
+	}
 	private void createRandomFruitPosition() {
 		Random rand = new Random();
 		fruitPosoition = new Point(rand.nextInt(panelWidth), rand.nextInt(panelHeight));

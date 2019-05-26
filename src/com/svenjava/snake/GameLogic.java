@@ -78,8 +78,8 @@ public class GameLogic extends KeyAdapter{
 	}
 
 	private void renderGame(float interpolation) {
-		// TODO Auto-generated method stub
-		
+		panel.setInterpolation(interpolation);
+		panel.repaint();
 	}
 	private void updateGame() {
 		checkFruit();
@@ -96,8 +96,9 @@ public class GameLogic extends KeyAdapter{
 		
 	}
 	private void checkFruit() {
-		// TODO Auto-generated method stub
-		
+		if (snake.getPositionHead().equals(fruitPosoition)) {
+			
+		}
 	}
 	private void createRandomFruitPosition() {
 		Random rand = new Random();

@@ -11,17 +11,19 @@ public class Snake {
 	private List<Point> bodyParts;
 	private int direction;
 	private Point positionHead;
+	private Point tailEnd;
 	private int speed;
 	private final int SCREEN_WIDTH = SnakePanel.WIDTH;
 	private final int SCREEN_HEIGHT = SnakePanel.HEIGHT;
 	
-	public Snake() {
-		length = 3;
+	public Snake(int initialLength) {
 		bodyParts = new ArrayList<>();
-		for (int i = 0; i <3; i++) {
+		for (int i = 0; i <initialLength; i++) {
 			bodyParts.add(new Point(SCREEN_WIDTH/2 - i * PART_RADIOUS, SCREEN_HEIGHT/2));
 		}
 		setPositionHead(bodyParts.get(0));
+		tailEnd = bodyParts.get(bodyParts.size()-1);
+		length = bodyParts.size();
 	}
 
 	public Point getPositionHead() {
@@ -31,5 +33,12 @@ public class Snake {
 	public void setPositionHead(Point positionHead) {
 		this.positionHead = positionHead;
 	}
+	public void addNewPart() {
+		bodyParts.add(new Point(tailEnd.x+ PART_RADIOUS, tailEnd.y));
+	}
+	public int getLength() {
+		return bodyParts.size();
+	}
+	
 
 }

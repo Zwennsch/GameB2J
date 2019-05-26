@@ -12,11 +12,12 @@ public class SnakePanel extends JPanel {
 	
 	private GameLogic game;
 	private Snake snake;
+	private float interpolation;
 	protected static final int WIDTH = 600;
 	protected static final int HEIGHT = 600;
 	
 	public SnakePanel() {
-		snake = new Snake();
+		snake = new Snake(3);
 		game = new GameLogic(WIDTH, HEIGHT, snake, this);
 		initBoard();
 		
@@ -40,6 +41,13 @@ public class SnakePanel extends JPanel {
 		super.paintComponent(g);
 		g.setColor(Color.green);
 		g.fillOval(snake.getPositionHead().x, snake.getPositionHead().y, 10, 10);
+		g.setColor(Color.gray);
+		for (int i = 1; i < snake.getLength(); i++) {
+//			g.fillOval(x, y, width, height);
+		}
+	}
+	public void setInterpolation(float interpolation) {
+		this.interpolation = interpolation;
 	}
 	
 	

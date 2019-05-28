@@ -9,6 +9,8 @@ public class Snake {
 	private final int PART_RADIOUS = 10;
 	
 	private List<Point> bodyParts;
+	
+//	you should probably create a enum for the directions
 	private int direction;
 	private Point positionHead;
 	private Point tailEnd;
@@ -24,6 +26,7 @@ public class Snake {
 		setPositionHead(bodyParts.get(0));
 		tailEnd = bodyParts.get(bodyParts.size()-1);
 		length = bodyParts.size();
+		speed = 1;
 	}
 
 	public Point getPositionHead() {
@@ -37,8 +40,12 @@ public class Snake {
 		bodyParts.add(new Point(tailEnd.x+ PART_RADIOUS, tailEnd.y));
 	}
 	public int getLength() {
-		return bodyParts.size();
+		return length;
 	}
+	public int getSpeed() {
+		return this.speed;
+	}
+	
 	
 
 }

@@ -110,7 +110,7 @@ public class GameLogic extends KeyAdapter{
 		
 		int k = e.getExtendedKeyCode();
 		
-		System.out.println(k);
+		System.out.println(k + "Taste Nr.");
 	}
 	public void initGame(Snake snake) {
 		this.snake = snake;

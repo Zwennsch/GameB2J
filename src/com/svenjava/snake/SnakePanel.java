@@ -43,8 +43,11 @@ public class SnakePanel extends JPanel {
 		g.fillOval(snake.getPositionHead().x, snake.getPositionHead().y, 10, 10);
 		g.setColor(Color.gray);
 		for (int i = 1; i < snake.getLength(); i++) {
-//			g.fillOval(x, y, width, height);
+			g.fillOval(snake.getBodyParts().get(i).x, snake.getBodyParts().get(i).y, 10, 10);
 		}
+		g.setColor(Color.RED);
+		g.fillOval(game.getFruitPosoition().x, game.getFruitPosoition().y, 10, 10);
+		System.out.println(game.getFruitPosoition().x + " ; y: " + game.getFruitPosoition().y);
 	}
 	public void setInterpolation(float interpolation) {
 		this.interpolation = interpolation;

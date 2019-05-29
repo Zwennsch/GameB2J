@@ -100,7 +100,7 @@ public class GameLogic extends KeyAdapter{
 	}
 	private void createRandomFruitPosition() {
 		Random rand = new Random();
-		fruitPosoition = new Point(rand.nextInt(panelWidth), rand.nextInt(panelHeight));
+		fruitPosoition = new Point(rand.nextInt(panelWidth-10), rand.nextInt(panelHeight-10));
 	}
 	
 	@Override
@@ -115,6 +115,10 @@ public class GameLogic extends KeyAdapter{
 	public void initGame(Snake snake) {
 		this.snake = snake;
 	}
+	public Point getFruitPosoition() {
+		return fruitPosoition;
+	}
+	
 
 
 }

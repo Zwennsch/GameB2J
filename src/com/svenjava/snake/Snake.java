@@ -45,6 +45,9 @@ public class Snake {
 	public int getSpeed() {
 		return this.speed;
 	}
+	public List<Point> getBodyParts(){
+		return this.bodyParts;
+	}
 	
 	
 

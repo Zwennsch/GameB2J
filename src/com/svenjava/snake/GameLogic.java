@@ -12,6 +12,8 @@ public class GameLogic extends KeyAdapter{
 	private Point fruitPosoition;
 	private Snake snake;
 	private SnakePanel panel;
+	private int frameCount = 0;
+	private int fps = 60;
 	
 	
 	public GameLogic(int width, int height, Snake snake, SnakePanel snakePanel) {
@@ -71,6 +73,20 @@ public class GameLogic extends KeyAdapter{
 			float interpolation = Math.min(1.0f, (float) ((now - lastUpdateTime) / TIME_BETWEEN_UPDATES));
 			renderGame(interpolation);
 			lastRenderTime = now;
+			
+//			Update the frames we got.
+			int thisSecond = (int) (lastUpdateTime / 1000000000);
+			if (thisSecond > lastSecondTime) {
+				System.out.println("New Second: "+ thisSecond +" "+ frameCount);
+				fps = frameCount;
+				frameCount = 0;
+				lastSecondTime = thisSecond;
+			}
+			
+//			Yield until it has been at least the target time between renders. This saves CPU from hogging
+			while(now - lastRenderTime < TARGET_TIME_BETWEEN_RENDERS && now - lastUpdateTime < TIME_BETWEEN_UPDATES) {
+				Thread.yield();
+			}
 		}
 		
 	}

@@ -111,7 +111,8 @@ public class GameLogic extends KeyAdapter{
 	}
 	private void checkFruit() {
 		if (snake.getPositionHead().equals(fruitPosoition)) {
-			
+			snake.addNewPart();
+			createRandomFruitPosition();
 		}
 	}
 	private void createRandomFruitPosition() {

@@ -3,8 +3,6 @@ package com.svenjava.snake;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
@@ -47,7 +45,6 @@ public class SnakePanel extends JPanel {
 		}
 		g.setColor(Color.RED);
 		g.fillOval(game.getFruitPosoition().x, game.getFruitPosoition().y, 10, 10);
-		System.out.println(game.getFruitPosoition().x + " ; y: " + game.getFruitPosoition().y);
 	}
 	public void setInterpolation(float interpolation) {
 		this.interpolation = interpolation;

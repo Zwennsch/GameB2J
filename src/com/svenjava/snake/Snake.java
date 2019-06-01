@@ -10,7 +10,7 @@ public class Snake {
 	
 	private List<Point> bodyParts;
 	
-//	you should probably create a enum for the directions
+//	you should probably create a enum for the directions; for now 38 -> up; 39-> right; 40->down, 37->left
 	private int direction;
 	private Point positionHead;
 	private Point tailEnd;
@@ -27,10 +27,12 @@ public class Snake {
 		tailEnd = bodyParts.get(bodyParts.size()-1);
 		length = bodyParts.size();
 		speed = 1;
+		direction = 39;
 	}
 
 	public Point getPositionHead() {
-		return positionHead;
+//		maybe I have to change this to bodyParts[0]
+		return bodyParts.get(0);
 	}
 
 	public void setPositionHead(Point positionHead) {
@@ -47,6 +49,14 @@ public class Snake {
 	}
 	public List<Point> getBodyParts(){
 		return this.bodyParts;
+	}
+
+	public int getDirection() {
+		return direction;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
 	}
 	
 	

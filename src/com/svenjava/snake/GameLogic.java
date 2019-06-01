@@ -3,6 +3,8 @@ package com.svenjava.snake;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class GameLogic extends KeyAdapter{
@@ -55,6 +57,7 @@ public class GameLogic extends KeyAdapter{
 		int lastSecondTime = (int) (lastUpdateTime / 1000000000);
 		
 		while(isRunning) {
+			System.out.println(snake.getLength());
 			double now = System.nanoTime();
 			int updateCount = 0;
 //			Do as many updates as we need to potentially playing catch-up
@@ -102,12 +105,33 @@ public class GameLogic extends KeyAdapter{
 		
 	}
 	private void move() {
-		// TODO Auto-generated method stub
 		
 	}
 	private void checkCollision() {
-		// TODO Auto-generated method stub
-		
+//		for(int i = 3; i < snake.getLength(); i ++) {
+//			if (snake.getBodyParts().get(i).equals(snake.getPositionHead())){
+//				isRunning = false;
+//			}
+//			
+//		}
+		ListIterator<Point> p = snake.getBodyParts().listIterator(3);
+		while(p.hasNext()) {
+			if(p.next().equals(snake.getPositionHead())) {
+				isRunning = false;
+			}
+		}
+		if(snake.getPositionHead().getY()< 0 ) {
+			isRunning = false;
+		}
+		if(snake.getPositionHead().getY()>= panelHeight ) {
+			isRunning = false;
+		}
+		if(snake.getPositionHead().getX()< 0 ) {
+			isRunning = false;
+		}
+		if(snake.getPositionHead().getX()>= panelWidth ) {
+			isRunning = false;
+		}
 	}
 	private void checkFruit() {
 		if (snake.getPositionHead().equals(fruitPosoition)) {
@@ -128,6 +152,7 @@ public class GameLogic extends KeyAdapter{
 		int k = e.getExtendedKeyCode();
 		
 		System.out.println(k + " -> Taste Nr.");
+		snake.setDirection(k);
 	}
 	public void initGame(Snake snake) {
 		this.snake = snake;

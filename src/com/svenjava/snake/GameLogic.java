@@ -20,12 +20,10 @@ public class GameLogic extends KeyAdapter{
 	
 	public GameLogic(int width, int height, Snake snake, SnakePanel snakePanel) {
 		this.panel = snakePanel;
-		isRunning = true;
 		this.snake = snake;
 		this.panelWidth = width;
 		this.panelHeight = height;
-		createRandomFruitPosition();
-		runGameLoop();
+		
 	}
 // 	game loop should be running in it's own thread
 	private void runGameLoop() {
@@ -60,6 +58,7 @@ public class GameLogic extends KeyAdapter{
 			System.out.println(snake.getLength());
 			double now = System.nanoTime();
 			int updateCount = 0;
+			updateGame();
 //			Do as many updates as we need to potentially playing catch-up
 			while(now - lastUpdateTime >= TIME_BETWEEN_UPDATES && updateCount <= MAX_UPDATES_PER_RENDER) {
 				updateGame();
@@ -95,16 +94,26 @@ public class GameLogic extends KeyAdapter{
 	}
 
 	private void renderGame(float interpolation) {
+		System.out.println("In renderGame");
 		panel.setInterpolation(interpolation);
 		panel.repaint();
 	}
 	private void updateGame() {
+		System.out.println("in Update Game");
 		checkFruit();
 		checkCollision();
 		move();
 		
 	}
 	private void move() {
+		for (int i = snake.getLength()-1; i > 0; i--) {
+			snake.getBodyParts().get(i).x = snake.getBodyParts().get(i-1).x;
+			snake.getBodyParts().get(i).y = snake.getBodyParts().get(i-1).y;
+		}
+		int dir = snake.getDirection();
+		if (dir == 39) {
+			snake.getBodyParts().get(0).x += snake.PART_RADIOUS;
+		}
 		
 	}
 	private void checkCollision() {
@@ -114,7 +123,7 @@ public class GameLogic extends KeyAdapter{
 //			}
 //			
 //		}
-		ListIterator<Point> p = snake.getBodyParts().listIterator(3);
+		ListIterator<Point> p = snake.getBodyParts().listIterator(2);
 		while(p.hasNext()) {
 			if(p.next().equals(snake.getPositionHead())) {
 				isRunning = false;
@@ -132,6 +141,7 @@ public class GameLogic extends KeyAdapter{
 		if(snake.getPositionHead().getX()>= panelWidth ) {
 			isRunning = false;
 		}
+		System.out.println(isRunning);
 	}
 	private void checkFruit() {
 		if (snake.getPositionHead().equals(fruitPosoition)) {
@@ -156,6 +166,9 @@ public class GameLogic extends KeyAdapter{
 	}
 	public void initGame(Snake snake) {
 		this.snake = snake;
+		isRunning = true;
+		createRandomFruitPosition();
+		runGameLoop();
 	}
 	public Point getFruitPosoition() {
 		return fruitPosoition;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Snake {
 	private int length;
-	private final int PART_RADIOUS = 10;
+	protected final int PART_RADIOUS = 10;
 	
 	private List<Point> bodyParts;
 	

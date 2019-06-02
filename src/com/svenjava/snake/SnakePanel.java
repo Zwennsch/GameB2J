@@ -18,7 +18,6 @@ public class SnakePanel extends JPanel {
 		snake = new Snake(3);
 		game = new GameLogic(WIDTH, HEIGHT, snake, this);
 		initBoard();
-		
 	}
 	private void initBoard() {
 		setBackground(Color.BLACK);
@@ -35,6 +34,7 @@ public class SnakePanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
+		System.out.println("repainting");
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.setColor(Color.green);

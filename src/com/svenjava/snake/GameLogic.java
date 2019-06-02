@@ -58,7 +58,6 @@ public class GameLogic extends KeyAdapter{
 			System.out.println(snake.getLength());
 			double now = System.nanoTime();
 			int updateCount = 0;
-			updateGame();
 //			Do as many updates as we need to potentially playing catch-up
 			while(now - lastUpdateTime >= TIME_BETWEEN_UPDATES && updateCount <= MAX_UPDATES_PER_RENDER) {
 				updateGame();
@@ -88,6 +87,12 @@ public class GameLogic extends KeyAdapter{
 //			Yield until it has been at least the target time between renders. This saves CPU from hogging
 			while(now - lastRenderTime < TARGET_TIME_BETWEEN_RENDERS && now - lastUpdateTime < TIME_BETWEEN_UPDATES) {
 				Thread.yield();
+				//This stops the app from consuming all your CPU. It makes this slightly less accurate, but is worth it.
+	            //You can remove this line and it will still work (better), your CPU just climbs on certain OSes.
+	            //FYI on some OS's this can cause pretty bad stuttering. Scroll down and have a look at different peoples' solutions to this.
+	            try {Thread.sleep(1);} catch(Exception e) {} 
+	            
+	            now = System.nanoTime();
 			}
 		}
 		

@@ -35,8 +35,7 @@ public class GameLogic extends KeyAdapter{
 		thread.start();
 	}
 	private void gameLoop() {
-		System.out.println("Starting the loop");
-		final double GAME_HERTZ = 30.0;
+		final double GAME_HERTZ = 10.0;
 //		Calculate how many ns each frame should take for our target game hertz
 		final double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
 //		At the very most we will update the game this many times before a new render
@@ -55,7 +54,6 @@ public class GameLogic extends KeyAdapter{
 		int lastSecondTime = (int) (lastUpdateTime / 1000000000);
 		
 		while(isRunning) {
-			System.out.println(snake.getLength());
 			double now = System.nanoTime();
 			int updateCount = 0;
 //			Do as many updates as we need to potentially playing catch-up
@@ -99,12 +97,10 @@ public class GameLogic extends KeyAdapter{
 	}
 
 	private void renderGame(float interpolation) {
-		System.out.println("In renderGame");
 		panel.setInterpolation(interpolation);
 		panel.repaint();
 	}
 	private void updateGame() {
-		System.out.println("in Update Game");
 		checkFruit();
 		checkCollision();
 		move();
@@ -118,6 +114,15 @@ public class GameLogic extends KeyAdapter{
 		int dir = snake.getDirection();
 		if (dir == 39) {
 			snake.getBodyParts().get(0).x += snake.PART_RADIOUS;
+		}
+		if (dir == 37) {
+			snake.getBodyParts().get(0).x -= snake.PART_RADIOUS;
+		}
+		if (dir == 38) {
+			snake.getBodyParts().get(0).y -= snake.PART_RADIOUS;
+		}
+		if (dir == 40) {
+			snake.getBodyParts().get(0).y += snake.PART_RADIOUS;
 		}
 		
 	}
@@ -146,9 +151,9 @@ public class GameLogic extends KeyAdapter{
 		if(snake.getPositionHead().getX()>= panelWidth ) {
 			isRunning = false;
 		}
-		System.out.println(isRunning);
 	}
 	private void checkFruit() {
+//		System.out.println("Position Head:"+ snake.getPositionHead()+ " ;Position Fruit:"+ fruitPosoition);
 		if (snake.getPositionHead().equals(fruitPosoition)) {
 			snake.addNewPart();
 			createRandomFruitPosition();
@@ -156,7 +161,7 @@ public class GameLogic extends KeyAdapter{
 	}
 	private void createRandomFruitPosition() {
 		Random rand = new Random();
-		fruitPosoition = new Point(rand.nextInt(panelWidth-10), rand.nextInt(panelHeight-10));
+		fruitPosoition = new Point(rand.nextInt((panelWidth-10)/10)*10, rand.nextInt((panelHeight-10)/10)*10);
 	}
 	
 	@Override
@@ -166,7 +171,6 @@ public class GameLogic extends KeyAdapter{
 		
 		int k = e.getExtendedKeyCode();
 		
-		System.out.println(k + " -> Taste Nr.");
 		snake.setDirection(k);
 	}
 	public void initGame(Snake snake) {

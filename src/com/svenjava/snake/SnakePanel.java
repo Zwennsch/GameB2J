@@ -34,7 +34,6 @@ public class SnakePanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		System.out.println("repainting");
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.setColor(Color.green);

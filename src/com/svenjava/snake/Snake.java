@@ -29,7 +29,25 @@ public class Snake {
 		speed = 1;
 		direction = 39;
 	}
-
+	public void move() {
+		for (int i = this.getLength()-1; i > 0; i--) {
+			this.getBodyParts().get(i).x = this.getBodyParts().get(i-1).x;
+			this.getBodyParts().get(i).y = this.getBodyParts().get(i-1).y;
+		}
+		int dir = this.getDirection();
+		if (dir == 39) {
+			this.getBodyParts().get(0).x += this.PART_RADIOUS;
+		}
+		if (dir == 37) {
+			this.getBodyParts().get(0).x -= this.PART_RADIOUS;
+		}
+		if (dir == 38) {
+			this.getBodyParts().get(0).y -= this.PART_RADIOUS;
+		}
+		if (dir == 40) {
+			this.getBodyParts().get(0).y += this.PART_RADIOUS;
+		}
+	}
 	public Point getPositionHead() {
 //		maybe I have to change this to bodyParts[0]
 		return bodyParts.get(0);

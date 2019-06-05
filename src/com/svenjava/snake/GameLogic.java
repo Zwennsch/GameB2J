@@ -103,29 +103,10 @@ public class GameLogic extends KeyAdapter{
 	private void updateGame() {
 		checkFruit();
 		checkCollision();
-		move();
-		
+		snake.move();
 	}
-	private void move() {
-		for (int i = snake.getLength()-1; i > 0; i--) {
-			snake.getBodyParts().get(i).x = snake.getBodyParts().get(i-1).x;
-			snake.getBodyParts().get(i).y = snake.getBodyParts().get(i-1).y;
-		}
-		int dir = snake.getDirection();
-		if (dir == 39) {
-			snake.getBodyParts().get(0).x += snake.PART_RADIOUS;
-		}
-		if (dir == 37) {
-			snake.getBodyParts().get(0).x -= snake.PART_RADIOUS;
-		}
-		if (dir == 38) {
-			snake.getBodyParts().get(0).y -= snake.PART_RADIOUS;
-		}
-		if (dir == 40) {
-			snake.getBodyParts().get(0).y += snake.PART_RADIOUS;
-		}
+	
 		
-	}
 	private void checkCollision() {
 //		for(int i = 3; i < snake.getLength(); i ++) {
 //			if (snake.getBodyParts().get(i).equals(snake.getPositionHead())){

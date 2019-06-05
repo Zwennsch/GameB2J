@@ -11,6 +11,7 @@ public class SnakePanel extends JPanel {
 	private GameLogic game;
 	private Snake snake;
 	private float interpolation;
+	private int lastDrawXHead, lastDrawBodyPartX, lastDrawYHead, lastDrawBodyPartY;
 	protected static final int WIDTH = 600;
 	protected static final int HEIGHT = 600;
 	
@@ -37,6 +38,7 @@ public class SnakePanel extends JPanel {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.setColor(Color.green);
+//		int drawXhead = (int) 
 		g.fillOval(snake.getPositionHead().x, snake.getPositionHead().y, 10, 10);
 		g.setColor(Color.gray);
 		for (int i = 1; i < snake.getLength(); i++) {

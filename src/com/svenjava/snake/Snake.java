@@ -13,6 +13,8 @@ public class Snake {
 //	you should probably create a enum for the directions; for now 38 -> up; 39-> right; 40->down, 37->left
 	private int direction;
 	private Point positionHead;
+	static int lastHeadx;
+	static int lastHeady;
 	public Point lastPositionHead;
 	private Point tailEnd;
 	private int speed;
@@ -25,12 +27,15 @@ public class Snake {
 			bodyParts.add(new Point(SCREEN_WIDTH/2 - i * PART_RADIOUS, SCREEN_HEIGHT/2));
 		}
 		setPositionHead(bodyParts.get(0));
+		lastPositionHead = positionHead;
 		tailEnd = bodyParts.get(bodyParts.size()-1);
 		length = bodyParts.size();
 		speed = 1;
 		direction = 39;
 	}
 	public void move() {
+		lastHeadx = positionHead.x;
+		lastHeady = positionHead.y;
 		for (int i = this.getLength()-1; i > 0; i--) {
 			this.getBodyParts().get(i).x = this.getBodyParts().get(i-1).x;
 			this.getBodyParts().get(i).y = this.getBodyParts().get(i-1).y;

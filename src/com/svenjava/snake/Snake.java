@@ -13,6 +13,7 @@ public class Snake {
 //	you should probably create a enum for the directions; for now 38 -> up; 39-> right; 40->down, 37->left
 	private int direction;
 	private Point positionHead;
+	public Point lastPositionHead;
 	private Point tailEnd;
 	private int speed;
 	private final int SCREEN_WIDTH = SnakePanel.WIDTH;

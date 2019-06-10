@@ -53,6 +53,7 @@ public class Snake {
 		if (dir == 40) {
 			this.getBodyParts().get(0).y += this.PART_RADIOUS;
 		}
+		tailEnd = bodyParts.get(bodyParts.size()-1);
 	}
 	public Point getPositionHead() {
 //		maybe I have to change this to bodyParts[0]
@@ -64,6 +65,7 @@ public class Snake {
 	}
 	public void addNewPart() {
 		bodyParts.add(new Point(tailEnd.x+ PART_RADIOUS, tailEnd.y));
+		//System.out.println("New part body part added at: "+ this.get);
 	}
 	public int getLength() {
 		return length;

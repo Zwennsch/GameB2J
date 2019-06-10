@@ -76,7 +76,7 @@ public class GameLogic extends KeyAdapter{
 //			Update the frames we got.
 			int thisSecond = (int) (lastUpdateTime / 1000000000);
 			if (thisSecond > lastSecondTime) {
-				System.out.println("New Second: "+ thisSecond +" "+ frameCount);
+//				System.out.println("New Second: "+ thisSecond +" "+ frameCount);
 				fps = frameCount;
 				frameCount = 0;
 				lastSecondTime = thisSecond;

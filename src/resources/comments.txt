@@ -1,0 +1,3 @@
+still work on the update to do:
+    if have to create method updateSnake(); so that the haed and the tail gets updated.
+    the adding of the bodypart isn't working so far!

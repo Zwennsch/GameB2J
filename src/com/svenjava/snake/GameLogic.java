@@ -104,6 +104,7 @@ public class GameLogic extends KeyAdapter{
 		checkFruit();
 		checkCollision();
 		snake.move();
+		snake.update();
 	}
 	
 		
@@ -136,7 +137,7 @@ public class GameLogic extends KeyAdapter{
 	private void checkFruit() {
 //		System.out.println("Position Head:"+ snake.getPositionHead()+ " ;Position Fruit:"+ fruitPosoition);
 		if (snake.getPositionHead().equals(fruitPosoition)) {
-			snake.addNewPart();
+			snake.grow();
 			createRandomFruitPosition();
 		}
 	}

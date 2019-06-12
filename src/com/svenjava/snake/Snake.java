@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Snake {
-	private int length;
+	private static int length;
 	protected final int PART_RADIOUS = 10;
 	
 	private List<Point> bodyParts;
@@ -15,6 +15,8 @@ public class Snake {
 	private Point positionHead;
 	static int lastHeadx;
 	static int lastHeady;
+	static int lastTailx;
+	static int lastTaily;
 	public Point lastPositionHead;
 	private Point tailEnd;
 	private int speed;
@@ -34,6 +36,8 @@ public class Snake {
 		direction = 39;
 	}
 	public void move() {
+		lastTailx = tailEnd.x;
+		lastTaily = tailEnd.y;
 		lastHeadx = positionHead.x;
 		lastHeady = positionHead.y;
 		for (int i = this.getLength()-1; i > 0; i--) {
@@ -53,7 +57,16 @@ public class Snake {
 		if (dir == 40) {
 			this.getBodyParts().get(0).y += this.PART_RADIOUS;
 		}
+	}
+	
+	public void grow() {
+		this.getBodyParts().add(new Point(lastTailx, lastTaily));
+	}
+	
+	public void update() {
+		Snake.length = bodyParts.size();
 		tailEnd = bodyParts.get(bodyParts.size()-1);
+		positionHead = bodyParts.get(0);
 	}
 	public Point getPositionHead() {
 //		maybe I have to change this to bodyParts[0]
@@ -63,10 +76,7 @@ public class Snake {
 	public void setPositionHead(Point positionHead) {
 		this.positionHead = positionHead;
 	}
-	public void addNewPart() {
-		bodyParts.add(new Point(tailEnd.x+ PART_RADIOUS, tailEnd.y));
-		//System.out.println("New part body part added at: "+ this.get);
-	}
+	
 	public int getLength() {
 		return length;
 	}

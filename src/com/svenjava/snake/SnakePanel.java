@@ -38,10 +38,10 @@ public class SnakePanel extends JPanel {
 		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.setColor(Color.green);
-		//int drawXhead = (int)
 		g.fillOval(snake.getPositionHead().x, snake.getPositionHead().y, 10, 10);
 		g.setColor(Color.gray);
 		for (int i = 1; i < snake.getLength(); i++) {
+//			Do i really need the last Position and actual Position of every single body Part??? 
 			g.fillOval(snake.getBodyParts().get(i).x, snake.getBodyParts().get(i).y, 10, 10);
 		}
 		g.setColor(Color.RED);

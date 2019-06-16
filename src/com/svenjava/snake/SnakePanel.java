@@ -46,6 +46,7 @@ public class SnakePanel extends JPanel {
 		}
 		g.setColor(Color.RED);
 		g.fillOval(game.getFruitPosoition().x, game.getFruitPosoition().y, 10, 10);
+		System.out.println(interpolation);
 	}
 	public void setInterpolation(float interpolation) {
 		this.interpolation = interpolation;

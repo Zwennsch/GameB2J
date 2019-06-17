@@ -13,11 +13,11 @@ public class Snake {
 //	you should probably create a enum for the directions; for now 38 -> up; 39-> right; 40->down, 37->left
 	private int direction;
 	protected static Point positionHead;
+	protected static Point lastPositionHead;
 	static int lastHeadx;
 	static int lastHeady;
 	static int lastTailx;
 	static int lastTaily;
-	protected static Point lastPositionHead;
 	private Point tailEnd;
 	private int speed;
 	private final int SCREEN_WIDTH = SnakePanel.WIDTH;
@@ -41,6 +41,7 @@ public class Snake {
 //		lastHeadx = positionHead.x;
 //		lastHeady = positionHead.y;
 		lastPositionHead = positionHead;
+		System.out.println("lastHead before updating: "+lastPositionHead.x);
 		for (int i = this.getLength()-1; i > 0; i--) {
 			this.getBodyParts().get(i).x = this.getBodyParts().get(i-1).x;
 			this.getBodyParts().get(i).y = this.getBodyParts().get(i-1).y;
@@ -58,6 +59,7 @@ public class Snake {
 		if (dir == 40) {
 			this.getBodyParts().get(0).y += this.PART_RADIOUS;
 		}
+		
 	}
 	
 	public void grow() {
@@ -68,6 +70,7 @@ public class Snake {
 		Snake.length = bodyParts.size();
 		tailEnd = bodyParts.get(bodyParts.size()-1);
 		positionHead = bodyParts.get(0);
+		System.out.println("Head after updating: "+positionHead.x);
 	}
 	public Point getPositionHead() {
 //		maybe I have to change this to bodyParts[0]

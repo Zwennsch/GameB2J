@@ -34,6 +34,7 @@ public class GameLogic extends KeyAdapter{
 		};
 		thread.start();
 	}
+	
 	private void gameLoop() {
 		final double GAME_HERTZ = 10.0;
 //		Calculate how many ns each frame should take for our target game hertz
@@ -65,6 +66,7 @@ public class GameLogic extends KeyAdapter{
 //			if for some reason an update takes forever we don't want to do an insane number of catch-ups
 //			if you were doing some sort of game that needed to keep EXACT_TIME! you would get rid of this
 			if(now - lastUpdateTime > TIME_BETWEEN_UPDATES) {
+				System.out.println("update took too long!");
 				lastUpdateTime = now - TIME_BETWEEN_UPDATES;
 			}
 			

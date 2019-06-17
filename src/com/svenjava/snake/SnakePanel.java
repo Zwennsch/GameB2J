@@ -40,6 +40,7 @@ public class SnakePanel extends JPanel {
 		g.setColor(Color.green);
 		g.fillOval(snake.getPositionHead().x, snake.getPositionHead().y, 10, 10);
 		g.setColor(Color.gray);
+//		int drawX = 
 		for (int i = 1; i < snake.getLength(); i++) {
 //			Do i really need the last Position and actual Position of every single body Part??? 
 			g.fillOval(snake.getBodyParts().get(i).x, snake.getBodyParts().get(i).y, 10, 10);
@@ -47,6 +48,7 @@ public class SnakePanel extends JPanel {
 		g.setColor(Color.RED);
 		g.fillOval(game.getFruitPosoition().x, game.getFruitPosoition().y, 10, 10);
 		System.out.println(interpolation);
+//		System.out.println("head x: "+Snake.positionHead.x+ "; last head x: "+ Snake.lastPositionHead.x);
 	}
 	public void setInterpolation(float interpolation) {
 		this.interpolation = interpolation;

@@ -1,3 +1,4 @@
 still work on the update to do:
-    if have to create method updateSnake(); so that the haed and the tail gets updated.
-    the adding of the bodypart isn't working so far!
+    cannot figure out how to integrate the interpolation. lastHeadx is always equal to headX ! Therefore the product (headx - lastHeadx)*interpolation is always 0.
+    if I take out the last while loop with the thread.yield() method, the app runs pretty smooth...
+    

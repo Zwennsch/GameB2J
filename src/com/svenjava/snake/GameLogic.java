@@ -85,6 +85,7 @@ public class GameLogic extends KeyAdapter{
 			}
 			
 //			Yield until it has been at least the target time between renders. This saves CPU from hogging
+//			In my case, this isn't working 
 			while(now - lastRenderTime < TARGET_TIME_BETWEEN_RENDERS && now - lastUpdateTime < TIME_BETWEEN_UPDATES) {
 				Thread.yield();
 				//This stops the app from consuming all your CPU. It makes this slightly less accurate, but is worth it.
